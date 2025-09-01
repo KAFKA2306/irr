@@ -1,11 +1,25 @@
-# irr
+# IRR for Wage Data Investments
 
-賃金構造基本統計調査の表ID「C00101」長期データにおける、
-企業規模1000人以上の
-J 金融業，保険業
-C 鉱業，採石業，砂利採取業
-G 情報通信業
-産業計
-E 製造業　にして、
-全ての賃金とボーナスを、全世界株式に投資したとした時の、
-開始年度ごとの年率内部収益率を計算し、費用を出力しましょう。
+This repository computes the internal rate of return (IRR) for investing
+Japanese wage and bonus income into a global equity index. The data is fetched
+from public APIs and processed on each run.
+
+## Structure
+- `data/raw/`: downloaded wage/bonus and stock return data (ignored from git)
+- `data/processed/`: generated IRR results
+- `src/fetch_and_compute_irr.py`: script fetching data and computing IRR
+- `.github/workflows/irr.yml`: GitHub Actions workflow executing the script
+
+## Local Usage
+Install dependencies and run the script:
+
+```bash
+pip install -r requirements.txt
+python src/fetch_and_compute_irr.py
+```
+
+IRR results will be written to `data/processed/irr_results.csv`.
+
+The GitHub Actions workflow will run the same script and upload the results as
+an artifact. Set the `ESTAT_APP_ID` secret with your e-Stat API key for wage
+data retrieval.

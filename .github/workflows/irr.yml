@@ -1,0 +1,22 @@
+name: Fetch and compute IRR
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: pip install -r requirements.txt
+      - run: python src/fetch_and_compute_irr.py
+        env:
+          ESTAT_APP_ID: ${{ secrets.ESTAT_APP_ID }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: irr-results
+          path: data/processed/irr_results.csv
