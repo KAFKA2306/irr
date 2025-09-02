@@ -1,0 +1,181 @@
+irr_results:
+- industry: 産業計
+  irr: 0.0050573553520469865
+  start_year: 2004
+- industry: 産業計
+  irr: 0.0054212144657754015
+  start_year: 2005
+- industry: 産業計
+  irr: 0.005797613901691
+  start_year: 2006
+- industry: 産業計
+  irr: 0.006039914656859457
+  start_year: 2007
+- industry: 産業計
+  irr: 0.006053198853339027
+  start_year: 2008
+- industry: 産業計
+  irr: 0.005765888082682776
+  start_year: 2009
+- industry: 産業計
+  irr: 0.005481867005015198
+  start_year: 2010
+- industry: 産業計
+  irr: 0.005590262435847811
+  start_year: 2011
+- industry: 産業計
+  irr: 0.005737438607193738
+  start_year: 2012
+- industry: 産業計
+  irr: 0.004485645109450592
+  start_year: 2013
+- industry: 産業計
+  irr: 0.0017055757803374919
+  start_year: 2014
+- industry: 産業計
+  irr: 0.003636149343047406
+  start_year: 2015
+- industry: J 金融業，保険業
+  irr: 0.0050573553520469865
+  start_year: 2004
+- industry: J 金融業，保険業
+  irr: 0.0054212144657754015
+  start_year: 2005
+- industry: J 金融業，保険業
+  irr: 0.005797613901691
+  start_year: 2006
+- industry: J 金融業，保険業
+  irr: 0.006039914656860344
+  start_year: 2007
+- industry: J 金融業，保険業
+  irr: 0.006053198853338139
+  start_year: 2008
+- industry: J 金融業，保険業
+  irr: 0.005765888082682776
+  start_year: 2009
+- industry: J 金融業，保険業
+  irr: 0.005481867005015198
+  start_year: 2010
+- industry: J 金融業，保険業
+  irr: 0.005590262435847811
+  start_year: 2011
+- industry: J 金融業，保険業
+  irr: 0.005737438607193738
+  start_year: 2012
+- industry: J 金融業，保険業
+  irr: 0.004485645109450592
+  start_year: 2013
+- industry: J 金融業，保険業
+  irr: 0.0017055757803374919
+  start_year: 2014
+- industry: J 金融業，保険業
+  irr: 0.003636149343047406
+  start_year: 2015
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.0050573553520469865
+  start_year: 2004
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.0054212144657754015
+  start_year: 2005
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.005797613901691
+  start_year: 2006
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.006039914656859457
+  start_year: 2007
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.006053198853339027
+  start_year: 2008
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.005765888082682776
+  start_year: 2009
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.005481867005015198
+  start_year: 2010
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.005590262435847811
+  start_year: 2011
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.005737438607193738
+  start_year: 2012
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.004485645109450592
+  start_year: 2013
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.0017055757803374919
+  start_year: 2014
+- industry: C 鉱業，採石業，砂利採取業
+  irr: 0.003636149343047406
+  start_year: 2015
+- industry: G 情報通信業
+  irr: 0.0050573553520469865
+  start_year: 2004
+- industry: G 情報通信業
+  irr: 0.0054212144657754015
+  start_year: 2005
+- industry: G 情報通信業
+  irr: 0.005797613901691
+  start_year: 2006
+- industry: G 情報通信業
+  irr: 0.006039914656859457
+  start_year: 2007
+- industry: G 情報通信業
+  irr: 0.006053198853339027
+  start_year: 2008
+- industry: G 情報通信業
+  irr: 0.005765888082682776
+  start_year: 2009
+- industry: G 情報通信業
+  irr: 0.005481867005015198
+  start_year: 2010
+- industry: G 情報通信業
+  irr: 0.005590262435847811
+  start_year: 2011
+- industry: G 情報通信業
+  irr: 0.005737438607193738
+  start_year: 2012
+- industry: G 情報通信業
+  irr: 0.004485645109450592
+  start_year: 2013
+- industry: G 情報通信業
+  irr: 0.0017055757803374919
+  start_year: 2014
+- industry: G 情報通信業
+  irr: 0.003636149343047406
+  start_year: 2015
+- industry: E 製造業
+  irr: 0.0050573553520469865
+  start_year: 2004
+- industry: E 製造業
+  irr: 0.0054212144657754015
+  start_year: 2005
+- industry: E 製造業
+  irr: 0.005797613901691
+  start_year: 2006
+- industry: E 製造業
+  irr: 0.006039914656859457
+  start_year: 2007
+- industry: E 製造業
+  irr: 0.006053198853339027
+  start_year: 2008
+- industry: E 製造業
+  irr: 0.005765888082682776
+  start_year: 2009
+- industry: E 製造業
+  irr: 0.005481867005015198
+  start_year: 2010
+- industry: E 製造業
+  irr: 0.005590262435847811
+  start_year: 2011
+- industry: E 製造業
+  irr: 0.005737438607193738
+  start_year: 2012
+- industry: E 製造業
+  irr: 0.004485645109450592
+  start_year: 2013
+- industry: E 製造業
+  irr: 0.0017055757803374919
+  start_year: 2014
+- industry: E 製造業
+  irr: 0.003636149343047406
+  start_year: 2015
