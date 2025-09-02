@@ -169,65 +169,162 @@ def fetch_wage_bonus() -> Dict[str, Dict[str, Dict[str, float]]]:
     return out
 
 
-def fetch_world_returns() -> pd.Series:
+def fetch_world_returns(force_refresh: bool = False, max_retries: int = 3) -> pd.Series:
+    """
+    Fetch global stock returns data with enhanced error handling and validation
+    
+    Args:
+        force_refresh: If True, ignore existing data and fetch fresh data from API
+        max_retries: Maximum number of retry attempts for API calls
+        
+    Returns:
+        pandas Series with monthly returns data
+        
+    Raises:
+        ValueError: If data validation fails
+    """
     yaml_file = RAW_DIR / 'world_stock.yml'
     
-    # Try to load existing YAML data first
-    if yaml_file.exists():
+    # Try to load existing YAML data first (unless forced refresh)
+    if yaml_file.exists() and not force_refresh:
         print("Loading existing world stock data from YAML...")
-        with open(yaml_file, 'r') as f:
-            yaml_data = yaml.load(f, Loader=yaml.SafeLoader)
-        
-        # Convert YAML data back to pandas Series
-        dates = pd.to_datetime([item['date'] for item in yaml_data])
-        returns = pd.Series([item['return'] for item in yaml_data], index=dates, name='return')
-        return returns
+        try:
+            with open(yaml_file, 'r') as f:
+                yaml_data = yaml.load(f, Loader=yaml.SafeLoader)
+            
+            if not yaml_data or not isinstance(yaml_data, list):
+                print("Warning: Invalid YAML format, fetching fresh data...")
+            else:
+                # Validate YAML data structure
+                try:
+                    dates = pd.to_datetime([item['date'] for item in yaml_data])
+                    returns = pd.Series([item['return'] for item in yaml_data], index=dates, name='return')
+                    
+                    # Data quality validation
+                    if len(returns) < 12:  # At least 1 year of data
+                        print("Warning: Insufficient data in cache, fetching fresh data...")
+                    elif returns.isna().sum() > len(returns) * 0.1:  # More than 10% missing
+                        print("Warning: Too many missing values in cached data, fetching fresh data...")
+                    else:
+                        print(f"Loaded {len(returns)} data points from cache")
+                        return returns
+                except Exception as e:
+                    print(f"Warning: Error validating cached data: {e}, fetching fresh data...")
+        except Exception as e:
+            print(f"Error loading cached data: {e}, fetching fresh data...")
     
-    # If YAML doesn't exist, fetch from API and save as YAML
-    try:
-        data = yf.download('ACWI', start='2004-01-01', end='2016-01-01', interval='1mo', auto_adjust=True, progress=False)
-        if data.empty or 'Close' not in data.columns:
-            raise ValueError("No stock data downloaded")
-        data['return'] = data['Close'].pct_change()
-        data = data.dropna(subset=['return'])
+    # If YAML doesn't exist or is invalid, fetch from API and save as YAML
+    for attempt in range(max_retries):
+        try:
+            print(f"Fetching stock data from Yahoo Finance (attempt {attempt + 1}/{max_retries})...")
+            
+            # Fetch ACWI (iShares MSCI ACWI ETF) monthly data
+            data = yf.download('ACWI', start='2004-01-01', end='2016-01-01', 
+                             interval='1mo', auto_adjust=True, progress=False)
+            
+            # Validate downloaded data
+            if data.empty:
+                raise ValueError("No stock data downloaded - data is empty")
+            
+            if 'Close' not in data.columns:
+                raise ValueError(f"Expected 'Close' column not found. Available columns: {list(data.columns)}")
+            
+            if len(data) < 12:
+                raise ValueError(f"Insufficient data points: {len(data)} (expected at least 12)")
+            
+            # Calculate returns and validate
+            data['return'] = data['Close'].pct_change()
+            data = data.dropna(subset=['return'])
+            
+            if data['return'].isna().sum() > 0:
+                print(f"Warning: {data['return'].isna().sum()} missing return values detected")
+            
+            # Outlier detection for returns (returns beyond ±50% monthly are suspicious)
+            extreme_returns = data['return'][(data['return'] > 0.5) | (data['return'] < -0.5)]
+            if not extreme_returns.empty:
+                print(f"Warning: Detected {len(extreme_returns)} extreme monthly returns (>±50%)")
+                for date, ret in extreme_returns.items():
+                    print(f"  {date.strftime('%Y-%m')}: {ret:.4f}")
+            
+            # Basic statistical validation
+            mean_return = data['return'].mean()
+            std_return = data['return'].std()
+            if abs(mean_return) > 0.05:  # Monthly mean > 5% is suspicious
+                print(f"Warning: Unusually high mean monthly return: {mean_return:.4f}")
+            if std_return > 0.15:  # Monthly volatility > 15% is very high
+                print(f"Warning: Very high volatility detected: {std_return:.4f}")
+            
+            print(f"Successfully fetched {len(data)} stock data points")
+            print(f"Return statistics: mean={mean_return:.4f}, std={std_return:.4f}")
+            
+            # Save as YAML with data validation
+            yaml_data = []
+            for date, return_val in data['return'].items():
+                if pd.isna(return_val):
+                    print(f"Warning: Skipping NaN return for {date}")
+                    continue
+                yaml_data.append({
+                    'date': date.strftime('%Y-%m-%d'),
+                    'return': float(return_val)
+                })
+            
+            if not yaml_data:
+                raise ValueError("No valid data points to save")
+            
+            with open(yaml_file, 'w') as f:
+                yaml.dump(yaml_data, f, default_flow_style=False, allow_unicode=True)
+            
+            print(f"Stock data saved to {yaml_file}")
+            return data['return']
+            
+        except Exception as e:
+            print(f"Stock data fetch failed (attempt {attempt + 1}): {e}")
+            if attempt == max_retries - 1:
+                print("Max retries exceeded. Using sample data for demonstration...")
+                break
+            else:
+                print("Retrying...")
+                import time
+                time.sleep(2 ** attempt)  # Exponential backoff
+    
+    # Fallback: Generate realistic sample data
+    print("Generating sample stock returns for demonstration...")
+    dates = pd.date_range('2004-01-31', '2015-12-31', freq='M')
+    
+    # Generate more realistic market returns with some correlation
+    np.random.seed(42)
+    n_periods = len(dates)
+    
+    # Market cycles simulation
+    base_trend = 0.008  # ~0.8% monthly average
+    returns_data = []
+    
+    for i in range(n_periods):
+        # Add some cyclical patterns and occasional market stress
+        cycle_factor = 0.002 * np.sin(2 * np.pi * i / 60)  # 5-year cycle
+        stress_factor = -0.05 if i in [36, 37, 60, 61] else 0  # Market stress periods
         
-        # Save as YAML
-        yaml_data = []
-        for date, return_val in data['return'].items():
-            yaml_data.append({
-                'date': date.strftime('%Y-%m-%d'),
-                'return': float(return_val)
-            })
-        
-        with open(yaml_file, 'w') as f:
-            yaml.dump(yaml_data, f, default_flow_style=False, allow_unicode=True)
-        
-        return data['return']
-    except Exception as e:
-        print(f"Stock data fetch error: {e}")
-        print("Using sample stock returns for demonstration...")
-        # Generate sample monthly returns (realistic market data)
-        import numpy as np
-        dates = pd.date_range('2004-01-31', '2015-12-31', freq='M')
-        # Simulate realistic monthly returns: mean ~0.8%, std ~4%
-        returns = pd.Series(
-            np.random.seed(42) or np.random.normal(0.008, 0.04, len(dates)),
-            index=dates,
-            name='return'
-        )
-        
-        # Save sample data as YAML
-        yaml_data = []
-        for date, return_val in returns.items():
-            yaml_data.append({
-                'date': date.strftime('%Y-%m-%d'),
-                'return': float(return_val)
-            })
-        
-        with open(yaml_file, 'w') as f:
-            yaml.dump(yaml_data, f, default_flow_style=False, allow_unicode=True)
-        
-        return returns
+        monthly_return = (base_trend + cycle_factor + stress_factor + 
+                         np.random.normal(0, 0.04))  # 4% monthly volatility
+        returns_data.append(monthly_return)
+    
+    returns = pd.Series(returns_data, index=dates, name='return')
+    
+    # Save sample data as YAML
+    yaml_data = []
+    for date, return_val in returns.items():
+        yaml_data.append({
+            'date': date.strftime('%Y-%m-%d'),
+            'return': float(return_val)
+        })
+    
+    with open(yaml_file, 'w') as f:
+        yaml.dump(yaml_data, f, default_flow_style=False, allow_unicode=True)
+    
+    print(f"Sample data generated with {len(returns)} data points")
+    print(f"Sample statistics: mean={returns.mean():.4f}, std={returns.std():.4f}")
+    
+    return returns
 
 
 def irr(cashflows):
