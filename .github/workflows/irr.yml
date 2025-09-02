@@ -30,7 +30,7 @@ jobs:
       - name: Prepare Pages content
         run: |
           mkdir -p _site
-          cp -r report/* _site/
+          cp -r reports/* _site/
           # Create index.html that redirects to the main report
           cat > _site/index.html << 'EOF'
           <!DOCTYPE html>
@@ -73,7 +73,7 @@ jobs:
           name: irr-results
           path: |
             data/processed/
-            report/
+            reports/
 
   deploy:
     environment:
