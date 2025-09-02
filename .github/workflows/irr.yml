@@ -4,6 +4,15 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +25,63 @@ jobs:
       - run: python src/fetch_and_compute_irr.py
         env:
           ESTAT_APP_ID: ${{ secrets.ESTAT_APP_ID }}
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Prepare Pages content
+        run: |
+          mkdir -p _site
+          cp -r report/* _site/
+          # Create index.html that redirects to the main report
+          cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <meta charset="utf-8">
+              <title>IRR Analysis Report</title>
+              <meta http-equiv="refresh" content="0; url=./irr_analysis_report.html">
+              <style>
+                  body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+                  .container { max-width: 600px; margin: 0 auto; }
+                  h1 { color: #333; }
+                  p { color: #666; margin: 20px 0; }
+                  a { color: #007bff; text-decoration: none; }
+                  a:hover { text-decoration: underline; }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>IRR Analysis Report</h1>
+                  <p>Redirecting to the main report...</p>
+                  <p>If you are not redirected automatically, <a href="./irr_analysis_report.html">click here</a>.</p>
+                  <hr>
+                  <h2>Available Reports</h2>
+                  <ul style="text-align: left;">
+                      <li><a href="./irr_analysis_report.html">Interactive HTML Report</a></li>
+                      <li><a href="./irr_results.xlsx">Excel Report</a></li>
+                      <li><a href="./comprehensive_report.pdf">PDF Report</a></li>
+                  </ul>
+              </div>
+          </body>
+          </html>
+          EOF
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: '_site'
       - uses: actions/upload-artifact@v4
         with:
           name: irr-results
-          path: data/processed/irr_results.csv
+          path: |
+            data/processed/
+            report/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3
