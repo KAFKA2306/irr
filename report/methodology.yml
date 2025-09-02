@@ -1,0 +1,148 @@
+# IRR分析手法と実装詳細 (IRR Analysis Methodology and Implementation Details)
+
+methodology:
+  analysis_framework:
+    objective: "入社年別の資産蓄積格差分析および実質賃金とIRRの比較評価"
+    period: "2004年1月-2015年12月 (144ヶ月)"
+    target_comparison:
+      low_irr_period: "2005年-2010年入社"
+      high_irr_period: "2010年-2018年入社（2015年まで分析）"
+    expected_outcome: "高IRR期間（2010-2018年）が低IRR期間（2005-2010年）より優位性を示すことを検証"
+
+  data_sources:
+    primary:
+      wage_data: 
+        source: "e-Stat API（日本政府統計ポータル）"
+        fallback: "産業別実質賃金進展モデル"
+        industries:
+          - "産業計（全産業平均）"
+          - "J 金融業，保険業"
+          - "C 鉱業，採石業，砂利採取業"
+          - "G 情報通信業"
+          - "E 製造業"
+      stock_data:
+        source: "Yahoo Finance API"
+        instrument: "ACWI ETF（グローバル株式指数）"
+        fallback: "現実的な月次リターン分布（μ=0.8%, σ=4%）"
+
+  calculation_methodology:
+    investment_model:
+      frequency: "月次投資"
+      amount: "月給 + (年間賞与 ÷ 12)"
+      reinvestment: "配当再投資"
+      currency: "日本円建て"
+      
+    irr_calculation:
+      method: "二分探索法"
+      precision: "1000回反復による収束"
+      range: "年率-99.99%から+100%"
+      cash_flow_model: "月次流出 + 最終ポートフォリオ価値"
+      
+    sample_data_parameters:
+      wage_progression:
+        base_wage: "250,000円 + (年-2004) × 3,000円"
+        industry_multipliers:
+          financial: 1.30
+          mining: 1.20
+          it_communications: 1.15
+          manufacturing: 1.05
+          average: 1.00
+        bonus_ratio: 2.5  # 月給の2.5倍
+        
+      stock_returns:
+        distribution: "正規分布"
+        monthly_mean: 0.008  # 0.8%
+        monthly_std: 0.04    # 4%
+        seed: 42  # 再現性確保
+
+  analysis_categories:
+    asset_formation_disparity:
+      description: "入社年別の資産形成格差分析"
+      periods:
+        - start_years: [2005, 2006, 2007, 2008, 2009, 2010]
+          label: "低IRR期間"
+        - start_years: [2010, 2011, 2012, 2013, 2014, 2015]
+          label: "高IRR期間"
+      metrics:
+        - "平均IRR"
+        - "最終ポートフォリオ価値"
+        - "累積投資額"
+        - "資産形成效率"
+        
+    wage_vs_irr_comparison:
+      description: "実質賃金上昇率と投資リターンの比較"
+      calculations:
+        - "年間賃金成長率"
+        - "IRR年率換算"
+        - "投資優位性（IRR - 賃金成長率）"
+        - "累積差異（複利効果込み）"
+        
+    monthly_progression_analysis:
+      description: "月次IRR進展分析"
+      tracking:
+        - "各月のポートフォリオ価値"
+        - "累積投資額"
+        - "月次IRR"
+        - "労働収入 vs 金融収入比率"
+
+  data_quality_assurance:
+    validation_criteria:
+      wage_data:
+        range: "200,000円 - 500,000円"
+        growth_rate: "年間0.5% - 3.0%"
+        consistency: "産業間格差の合理性"
+      stock_data:
+        outlier_threshold: "月次±50%"
+        distribution: "統計的正規性検定"
+        volatility: "現実市場との整合性"
+        
+  output_specifications:
+    yaml_structure:
+      metadata:
+        - "分析実行日時"
+        - "データ期間"
+        - "対象産業リスト"
+      results:
+        - "IRR要約（産業別・入社年別）"
+        - "詳細分析（月次進展・賃金分析）"
+        - "資産形成格差分析"
+        - "賃金vsIRR比較"
+        
+    reporting:
+      executive_summary: "経営層向け要約レポート"
+      technical_analysis: "技術的実装詳細"
+      data_analysis: "データ品質・統計分析"
+      methodology: "手法論・検証可能性確保"
+
+  implementation_status:
+    completed:
+      - "YAML標準化による出力形式統一"
+      - "APIエラー時のフォールバック機制"
+      - "産業別賃金進展モデリング"
+      - "グローバル株式リターン生成"
+      - "包括的IRR計算インフラ"
+      - "レポート生成システム"
+    
+    infrastructure_ready:
+      - "実API切替対応（e-Stat, Yahoo Finance）"
+      - "複数投資開始年シナリオ実行"
+      - "期間比較分析自動化"
+      - "統計的有意性検定準備"
+
+# 検証可能性確保
+reproducibility:
+  random_seed: 42
+  data_snapshots:
+    wage_data: "data/raw/wage_bonus.yml"
+    stock_data: "data/raw/world_stock.yml"
+  parameters:
+    fixed_seed: true
+    documented_assumptions: true
+    open_source_dependencies: true
+    
+# 拡張性設計
+extensibility:
+  additional_industries: "設定ファイルによる追加対応"
+  alternative_instruments: "投資対象の柔軟な変更"
+  tax_considerations: "税効果モデリング準備"
+  inflation_adjustment: "実質価値評価機能"

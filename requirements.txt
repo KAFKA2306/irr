@@ -2,3 +2,5 @@ pandas
 requests
 yfinance
 PyYAML
+scipy
+numpy
