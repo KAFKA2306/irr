@@ -1,5 +1,5 @@
 metadata:
-  analysis_date: '2025-09-02 09:32:25'
+  analysis_date: '2025-09-02 09:45:18'
   data_period:
     start: 2004-01
     end: 2015-12
@@ -10,7 +10,7 @@ metadata:
   - G 情報通信業
   - E 製造業
 data_quality_assessment:
-  timestamp: '2025-09-02 09:32:25'
+  timestamp: '2025-09-02 09:45:18'
   wage_data_quality:
     産業計:
       wage_data_points: 13
@@ -39173,3 +39173,756 @@ wage_vs_irr_comparison:
     irr: 0.003636149343047406
     wage_growth: 0.010600706713780994
     irr_vs_wage_diff: -0.006964557370733588
+enhanced_economic_analysis:
+  産業計:
+    inflation_adjusted_analysis:
+      '2004':
+        original_contributions:
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        - 302083.3333333333
+        inflation_adjusted_contributions:
+        - 302083.3333333333
+        - 300580.4311774461
+        - 299085.0061467126
+        - 297597.0210415051
+        - 296116.43884726876
+        - 294643.2227336008
+        - 293177.3360533341
+        - 291718.742341626
+        - 290267.4053150508
+        - 288823.28887069743
+        - 287386.35708527104
+        - 285956.5742142001
+        real_value_erosion: 0.0269144394041253
+      '2005':
+        original_contributions:
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        - 305708.3333333333
+        inflation_adjusted_contributions:
+        - 305708.3333333333
+        - 304187.39635157544
+        - 302674.02622047317
+        - 301168.18529400317
+        - 299669.83611343603
+        - 298178.941406404
+        - 296695.46408597415
+        - 295219.36724972556
+        - 293750.61417883146
+        - 292289.16833714576
+        - 290834.9933702943
+        - 289388.0531047705
+        real_value_erosion: 0.026914439404125412
+      '2006':
+        original_contributions:
+        - 309333.3333333333
+        - 309333.3333333333
+        - 309333.3333333333
+        - 309333.3333333333
+        - 309333.3333333333
+        - 309333.3333333333
+        - 309333.3333333333
+        - 309333.3333333333
+        - 309333.3333333333
+        - 309333.3333333333
+        - 309333.3333333333
+        inflation_adjusted_contributions:
+        - 309333.3333333333
+        - 307794.36152570485
+        - 306263.0462942337
+        - 304739.34954650124
+        - 303223.23337960325
+        - 301714.6600792073
+        - 300213.5921186142
+        - 298719.9921578251
+        - 297233.82304261206
+        - 295755.04780359415
+        - 294283.6296553175
+        real_value_erosion: 0.024508012655795497
+    tax_effects_analysis:
+      '2004':
+        gross_income: 3625000.0
+        income_tax: 362500.0
+        resident_tax: 362500.0
+        total_tax: 725000.0
+        after_tax_income: 2900000.0
+        effective_tax_rate: 0.2
+      '2005':
+        gross_income: 3668500.0
+        income_tax: 366850.0
+        resident_tax: 366850.0
+        total_tax: 733700.0
+        after_tax_income: 2934800.0
+        effective_tax_rate: 0.2
+      '2006':
+        gross_income: 3712000.0
+        income_tax: 371200.0
+        resident_tax: 371200.0
+        total_tax: 742400.0
+        after_tax_income: 2969600.0
+        effective_tax_rate: 0.2
+    nisa_effects_analysis:
+      '2004':
+        total_contribution: 3000000
+        nisa_contribution: 1200000
+        regular_contribution: 1800000
+        nisa_utilization_rate: 0.4
+      '2005':
+        total_contribution: 3036000
+        nisa_contribution: 1200000
+        regular_contribution: 1836000
+        nisa_utilization_rate: 0.3952569169960474
+      '2006':
+        total_contribution: 3072000
+        nisa_contribution: 1200000
+        regular_contribution: 1872000
+        nisa_utilization_rate: 0.390625
+    forex_risk_analysis:
+      '2004':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 36250.0
+        portfolio_jpy: 4082472.51077554
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2005':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 36685.0
+        portfolio_jpy: 4131462.1809048466
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2006':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 114.4666622768562
+        portfolio_usd: 34026.666666666664
+        portfolio_jpy: 3894918.9617404933
+        forex_impact: 0.14466662276856201
+        total_volatility_periods: 11
+  J 金融業，保険業:
+    inflation_adjusted_analysis:
+      '2004':
+        original_contributions:
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        - 392708.3333333333
+        inflation_adjusted_contributions:
+        - 392708.3333333333
+        - 390754.56053067994
+        - 388810.5079907264
+        - 386876.12735395663
+        - 384951.3705014494
+        - 383036.18955368106
+        - 381130.5368693344
+        - 379234.3650441139
+        - 377347.62690956605
+        - 375470.27553190663
+        - 373602.2642108524
+        - 371743.5464784601
+        real_value_erosion: 0.026914439404124968
+      '2005':
+        original_contributions:
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        - 397420.8333333333
+        inflation_adjusted_contributions:
+        - 397420.8333333333
+        - 395443.6152570481
+        - 393476.2340866151
+        - 391518.6408822041
+        - 389570.7869474668
+        - 387632.62382832525
+        - 385704.1033117664
+        - 383785.17742464325
+        - 381875.79843248083
+        - 379975.9188382895
+        - 378085.49138138257
+        - 376204.4690362016
+        real_value_erosion: 0.02691443940412519
+      '2006':
+        original_contributions:
+        - 402133.3333333333
+        - 402133.3333333333
+        - 402133.3333333333
+        - 402133.3333333333
+        - 402133.3333333333
+        - 402133.3333333333
+        - 402133.3333333333
+        - 402133.3333333333
+        - 402133.3333333333
+        - 402133.3333333333
+        - 402133.3333333333
+        inflation_adjusted_contributions:
+        - 402133.3333333333
+        - 400132.6699834163
+        - 398141.9601825038
+        - 396161.1544104516
+        - 394190.2033934842
+        - 392229.05810296943
+        - 390277.6697541984
+        - 388335.9898051726
+        - 386403.9699553957
+        - 384481.5621446724
+        - 382568.7185519128
+        real_value_erosion: 0.024508012655795608
+    tax_effects_analysis:
+      '2004':
+        gross_income: 4712500.0
+        income_tax: 471250.0
+        resident_tax: 471250.0
+        total_tax: 942500.0
+        after_tax_income: 3770000.0
+        effective_tax_rate: 0.2
+      '2005':
+        gross_income: 4769050.0
+        income_tax: 476905.0
+        resident_tax: 476905.0
+        total_tax: 953810.0
+        after_tax_income: 3815240.0
+        effective_tax_rate: 0.2
+      '2006':
+        gross_income: 4825600.0
+        income_tax: 482560.0
+        resident_tax: 482560.0
+        total_tax: 965120.0
+        after_tax_income: 3860480.0
+        effective_tax_rate: 0.2
+    nisa_effects_analysis:
+      '2004':
+        total_contribution: 3900000.0
+        nisa_contribution: 1200000
+        regular_contribution: 2700000.0
+        nisa_utilization_rate: 0.3076923076923077
+      '2005':
+        total_contribution: 3946800.0
+        nisa_contribution: 1200000
+        regular_contribution: 2746800.0
+        nisa_utilization_rate: 0.30404378230465184
+      '2006':
+        total_contribution: 3993600.0
+        nisa_contribution: 1200000
+        regular_contribution: 2793600.0
+        nisa_utilization_rate: 0.3004807692307692
+    forex_risk_analysis:
+      '2004':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 47125.0
+        portfolio_jpy: 5307214.264008203
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2005':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 47690.5
+        portfolio_jpy: 5370900.8351763
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2006':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 114.4666622768562
+        portfolio_usd: 44234.66666666666
+        portfolio_jpy: 5063394.650262641
+        forex_impact: 0.14466662276856201
+        total_volatility_periods: 11
+  C 鉱業，採石業，砂利採取業:
+    inflation_adjusted_analysis:
+      '2004':
+        original_contributions:
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        - 362500.0
+        inflation_adjusted_contributions:
+        - 362500.0
+        - 360696.5174129354
+        - 358902.0073760551
+        - 357116.42524980614
+        - 355339.72661672253
+        - 353571.867280321
+        - 351812.803264001
+        - 350062.49080995127
+        - 348320.886378061
+        - 346587.9466448369
+        - 344863.6285023253
+        - 343147.8890570401
+        real_value_erosion: 0.02691443940412508
+      '2005':
+        original_contributions:
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        - 366850.0
+        inflation_adjusted_contributions:
+        - 366850.0
+        - 365024.8756218906
+        - 363208.8314645678
+        - 361401.82235280384
+        - 359603.80333612324
+        - 357814.72968768486
+        - 356034.556903169
+        - 354263.2406996707
+        - 352500.73701459775
+        - 350747.0020045749
+        - 349001.99204435316
+        - 347265.66372572456
+        real_value_erosion: 0.02691443940412508
+      '2006':
+        original_contributions:
+        - 371200.0
+        - 371200.0
+        - 371200.0
+        - 371200.0
+        - 371200.0
+        - 371200.0
+        - 371200.0
+        - 371200.0
+        - 371200.0
+        - 371200.0
+        - 371200.0
+        inflation_adjusted_contributions:
+        - 371200.0
+        - 369353.2338308458
+        - 367515.6555530805
+        - 365687.2194558015
+        - 363867.8800555239
+        - 362057.59209504875
+        - 360256.310542337
+        - 358463.9905893901
+        - 356680.58765113447
+        - 354906.057364313
+        - 353140.3555863811
+        real_value_erosion: 0.024508012655795386
+    tax_effects_analysis:
+      '2004':
+        gross_income: 4350000.0
+        income_tax: 435000.0
+        resident_tax: 435000.0
+        total_tax: 870000.0
+        after_tax_income: 3480000.0
+        effective_tax_rate: 0.2
+      '2005':
+        gross_income: 4402200.0
+        income_tax: 440220.0
+        resident_tax: 440220.0
+        total_tax: 880440.0
+        after_tax_income: 3521760.0
+        effective_tax_rate: 0.2
+      '2006':
+        gross_income: 4454400.0
+        income_tax: 445440.0
+        resident_tax: 445440.0
+        total_tax: 890880.0
+        after_tax_income: 3563520.0
+        effective_tax_rate: 0.2
+    nisa_effects_analysis:
+      '2004':
+        total_contribution: 3600000.0
+        nisa_contribution: 1200000
+        regular_contribution: 2400000.0
+        nisa_utilization_rate: 0.3333333333333333
+      '2005':
+        total_contribution: 3643200.0
+        nisa_contribution: 1200000
+        regular_contribution: 2443200.0
+        nisa_utilization_rate: 0.32938076416337286
+      '2006':
+        total_contribution: 3686400.0
+        nisa_contribution: 1200000
+        regular_contribution: 2486400.0
+        nisa_utilization_rate: 0.3255208333333333
+    forex_risk_analysis:
+      '2004':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 43500.0
+        portfolio_jpy: 4898967.012930648
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2005':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 44022.0
+        portfolio_jpy: 4957754.617085816
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2006':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 114.4666622768562
+        portfolio_usd: 40832.0
+        portfolio_jpy: 4673902.754088593
+        forex_impact: 0.14466662276856201
+        total_volatility_periods: 11
+  G 情報通信業:
+    inflation_adjusted_analysis:
+      '2004':
+        original_contributions:
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        - 347395.8333333333
+        inflation_adjusted_contributions:
+        - 347395.8333333333
+        - 345667.495854063
+        - 343947.7570687195
+        - 342236.57419773086
+        - 340533.9046743591
+        - 338839.706143641
+        - 337153.9364613343
+        - 335476.55369286996
+        - 333807.5161123084
+        - 332146.782201302
+        - 330494.3106480617
+        - 328850.06034633005
+        real_value_erosion: 0.0269144394041253
+      '2005':
+        original_contributions:
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        - 351564.5833333333
+        inflation_adjusted_contributions:
+        - 351564.5833333333
+        - 349815.5058043118
+        - 348075.13015354413
+        - 346343.41308810364
+        - 344620.3115304514
+        - 342905.78261736466
+        - 341199.7836988703
+        - 339502.2723371844
+        - 337813.2063056561
+        - 336132.54358771764
+        - 334460.24237583845
+        - 332796.26107048604
+        real_value_erosion: 0.0269144394041253
+      '2006':
+        original_contributions:
+        - 355733.3333333333
+        - 355733.3333333333
+        - 355733.3333333333
+        - 355733.3333333333
+        - 355733.3333333333
+        - 355733.3333333333
+        - 355733.3333333333
+        - 355733.3333333333
+        - 355733.3333333333
+        - 355733.3333333333
+        - 355733.3333333333
+        inflation_adjusted_contributions:
+        - 355733.3333333333
+        - 353963.51575456053
+        - 352202.5032383688
+        - 350450.2519784764
+        - 348706.71838654374
+        - 346971.85909108835
+        - 345245.6309364063
+        - 343527.99098149885
+        - 341818.89649900387
+        - 340118.30497413327
+        - 338426.17410361517
+        real_value_erosion: 0.024508012655795608
+    tax_effects_analysis:
+      '2004':
+        gross_income: 4168750.0
+        income_tax: 416875.0
+        resident_tax: 416875.0
+        total_tax: 833750.0
+        after_tax_income: 3335000.0
+        effective_tax_rate: 0.2
+      '2005':
+        gross_income: 4218775.0
+        income_tax: 421877.5
+        resident_tax: 421877.5
+        total_tax: 843755.0
+        after_tax_income: 3375020.0
+        effective_tax_rate: 0.2
+      '2006':
+        gross_income: 4268800.0
+        income_tax: 426880.0
+        resident_tax: 426880.0
+        total_tax: 853760.0
+        after_tax_income: 3415040.0
+        effective_tax_rate: 0.2
+    nisa_effects_analysis:
+      '2004':
+        total_contribution: 3450000.0
+        nisa_contribution: 1200000
+        regular_contribution: 2250000.0
+        nisa_utilization_rate: 0.34782608695652173
+      '2005':
+        total_contribution: 3491400.0
+        nisa_contribution: 1200000
+        regular_contribution: 2291400.0
+        nisa_utilization_rate: 0.34370166695308474
+      '2006':
+        total_contribution: 3532800.0
+        nisa_contribution: 1200000
+        regular_contribution: 2332800.0
+        nisa_utilization_rate: 0.33967391304347827
+    forex_risk_analysis:
+      '2004':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 41687.5
+        portfolio_jpy: 4694843.387391871
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2005':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 42187.75
+        portfolio_jpy: 4751181.508040573
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2006':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 114.4666622768562
+        portfolio_usd: 39130.666666666664
+        portfolio_jpy: 4479156.806001567
+        forex_impact: 0.14466662276856201
+        total_volatility_periods: 11
+  E 製造業:
+    inflation_adjusted_analysis:
+      '2004':
+        original_contributions:
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        - 317187.5
+        inflation_adjusted_contributions:
+        - 317187.5
+        - 315609.45273631846
+        - 314039.25645404827
+        - 312476.8720935804
+        - 310922.2607896322
+        - 309375.3838702809
+        - 307836.20285600086
+        - 306304.6794587074
+        - 304780.7755808034
+        - 303264.4533142323
+        - 301755.6749395346
+        - 300254.4029249101
+        real_value_erosion: 0.02691443940412508
+      '2005':
+        original_contributions:
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        - 320993.75
+        inflation_adjusted_contributions:
+        - 320993.75
+        - 319396.76616915426
+        - 317807.72753149684
+        - 316226.59455870336
+        - 314653.3279191078
+        - 313087.88847672427
+        - 311530.2372902729
+        - 309980.33561221184
+        - 308438.144887773
+        - 306903.6267540031
+        - 305376.74303880904
+        - 303857.455760009
+        real_value_erosion: 0.02691443940412508
+      '2006':
+        original_contributions:
+        - 324800.0
+        - 324800.0
+        - 324800.0
+        - 324800.0
+        - 324800.0
+        - 324800.0
+        - 324800.0
+        - 324800.0
+        - 324800.0
+        - 324800.0
+        - 324800.0
+        inflation_adjusted_contributions:
+        - 324800.0
+        - 323184.07960199006
+        - 321576.1986089454
+        - 319976.3170238263
+        - 318384.3950485834
+        - 316800.3930831676
+        - 315224.2717245449
+        - 313655.99176571635
+        - 312095.51419474266
+        - 310542.8001937739
+        - 308997.81113808346
+        real_value_erosion: 0.024508012655795386
+    tax_effects_analysis:
+      '2004':
+        gross_income: 3806250.0
+        income_tax: 380625.0
+        resident_tax: 380625.0
+        total_tax: 761250.0
+        after_tax_income: 3045000.0
+        effective_tax_rate: 0.2
+      '2005':
+        gross_income: 3851925.0
+        income_tax: 385192.5
+        resident_tax: 385192.5
+        total_tax: 770385.0
+        after_tax_income: 3081540.0
+        effective_tax_rate: 0.2
+      '2006':
+        gross_income: 3897600.0
+        income_tax: 389760.0
+        resident_tax: 389760.0
+        total_tax: 779520.0
+        after_tax_income: 3118080.0
+        effective_tax_rate: 0.2
+    nisa_effects_analysis:
+      '2004':
+        total_contribution: 3150000.0
+        nisa_contribution: 1200000
+        regular_contribution: 1950000.0
+        nisa_utilization_rate: 0.38095238095238093
+      '2005':
+        total_contribution: 3187800.0
+        nisa_contribution: 1200000
+        regular_contribution: 1987800.0
+        nisa_utilization_rate: 0.3764351590438547
+      '2006':
+        total_contribution: 3225600.0
+        nisa_contribution: 1200000
+        regular_contribution: 2025600.0
+        nisa_utilization_rate: 0.37202380952380953
+    forex_risk_analysis:
+      '2004':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 38062.5
+        portfolio_jpy: 4286596.136314318
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2005':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 112.61993133173904
+        portfolio_usd: 38519.25
+        portfolio_jpy: 4338035.289950089
+        forex_impact: 0.12619931331739043
+        total_volatility_periods: 12
+      '2006':
+        initial_exchange_rate: 100.0
+        final_exchange_rate: 114.4666622768562
+        portfolio_usd: 35728.0
+        portfolio_jpy: 4089664.9098275183
+        forex_impact: 0.14466662276856201
+        total_volatility_periods: 11
+visualization_error: "Invalid property specified for object of type plotly.graph_objs.bar.ErrorY:\
+  \ 'arrayplus'\n\nDid you mean \"arrayminus\"?\n\n    Valid properties:\n       \
+  \ array\n            Sets the data corresponding the length of each error\n    \
+  \        bar. Values are plotted relative to the underlying\n            data.\n\
+  \        arrayminus\n            Sets the data corresponding the length of each\
+  \ error\n            bar in the bottom (left) direction for vertical\n         \
+  \   (horizontal) bars Values are plotted relative to the\n            underlying\
+  \ data.\n        arrayminussrc\n            Sets the source reference on Chart Studio\
+  \ Cloud for\n            `arrayminus`.\n        arraysrc\n            Sets the source\
+  \ reference on Chart Studio Cloud for\n            `array`.\n        color\n   \
+  \         Sets the stroke color of the error bars.\n        symmetric\n        \
+  \    Determines whether or not the error bars have the same\n            length\
+  \ in both direction (top/bottom for vertical bars,\n            left/right for horizontal\
+  \ bars.\n        thickness\n            Sets the thickness (in px) of the error\
+  \ bars.\n        traceref\n\n        tracerefminus\n\n        type\n           \
+  \ Determines the rule used to generate the error bars. If\n            \"constant\"\
+  , the bar lengths are of a constant value.\n            Set this constant in `value`.\
+  \ If \"percent\", the bar\n            lengths correspond to a percentage of underlying\
+  \ data.\n            Set this percentage in `value`. If \"sqrt\", the bar\n    \
+  \        lengths correspond to the square of the underlying\n            data. If\
+  \ \"data\", the bar lengths are set with data set\n            `array`.\n      \
+  \  value\n            Sets the value of either the percentage (if `type` is\n  \
+  \          set to \"percent\") or the constant (if `type` is set to\n          \
+  \  \"constant\") corresponding to the lengths of the error\n            bars.\n\
+  \        valueminus\n            Sets the value of either the percentage (if `type`\
+  \ is\n            set to \"percent\") or the constant (if `type` is set to\n   \
+  \         \"constant\") corresponding to the lengths of the error\n            bars\
+  \ in the bottom (left) direction for vertical\n            (horizontal) bars\n \
+  \       visible\n            Determines whether or not this set of error bars is\n\
+  \            visible.\n        width\n            Sets the width (in px) of the\
+  \ cross-bar at both ends of\n            the error bars.\n        \nDid you mean\
+  \ \"arrayminus\"?\n\nBad property path:\narrayplus\n^^^^^^^^^"

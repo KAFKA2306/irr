@@ -4,3 +4,8 @@ yfinance
 PyYAML
 scipy
 numpy
+matplotlib
+seaborn
+plotly
+openpyxl
+reportlab
