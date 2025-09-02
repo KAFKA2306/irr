@@ -28,7 +28,31 @@ WAGE_STATS_ID = '0003411955'
 BONUS_STATS_ID = '0003411978'
 
 
-def fetch_estat(stats_id: str, industry: str) -> Dict[str, float]:
+def fetch_estat(stats_id: str, industry: str, max_retries: int = 3, retry_delay: float = 1.0) -> Dict[str, float]:
+    """
+    Fetch data from e-Stat API with enhanced error handling and validation
+    
+    Args:
+        stats_id: Statistics data ID
+        industry: Industry code
+        max_retries: Maximum number of retry attempts
+        retry_delay: Delay between retries in seconds
+        
+    Returns:
+        Dictionary mapping time periods to values
+        
+    Raises:
+        requests.RequestException: If API request fails after retries
+        ValueError: If data validation fails
+    """
+    import time
+    
+    if not ESTAT_APP_ID:
+        raise ValueError("ESTAT_APP_ID environment variable is not set")
+    
+    if not stats_id:
+        raise ValueError("stats_id parameter is required")
+    
     params = {
         'appId': ESTAT_APP_ID,
         'statsDataId': stats_id,
@@ -39,18 +63,73 @@ def fetch_estat(stats_id: str, industry: str) -> Dict[str, float]:
     }
     if industry:
         params['cdCat01'] = industry
+    
     url = 'https://api.e-stat.go.jp/rest/3.0/app/getSimpleStatsData'
-    r = requests.get(url, params=params, timeout=60)
-    r.raise_for_status()
-    print(f"API Response status: {r.status_code}")
-    print(f"API Response text (first 200 chars): {r.text[:200]}")
-    try:
-        data = r.json()
-    except requests.exceptions.JSONDecodeError:
-        print(f"Failed to parse JSON. Full response: {r.text}")
-        raise
-    values = data['GET_STATS_DATA']['STATISTICAL_DATA']['DATA_INF']['VALUE']
-    return {v['@time']: float(v['$']) for v in values}
+    
+    for attempt in range(max_retries):
+        try:
+            print(f"API Request attempt {attempt + 1}/{max_retries} for {stats_id} - {industry or 'All Industries'}")
+            r = requests.get(url, params=params, timeout=60)
+            r.raise_for_status()
+            
+            print(f"API Response status: {r.status_code}")
+            print(f"API Response text (first 200 chars): {r.text[:200]}")
+            
+            # Parse JSON response
+            try:
+                data = r.json()
+            except requests.exceptions.JSONDecodeError as e:
+                print(f"Failed to parse JSON: {e}")
+                print(f"Full response: {r.text}")
+                raise ValueError(f"Invalid JSON response from e-Stat API: {e}")
+            
+            # Validate response structure
+            try:
+                values = data['GET_STATS_DATA']['STATISTICAL_DATA']['DATA_INF']['VALUE']
+                if not values:
+                    raise ValueError("No data values found in API response")
+                
+                # Validate data structure and convert to expected format
+                result = {}
+                for v in values:
+                    if '@time' not in v or '$' not in v:
+                        print(f"Warning: Skipping invalid data entry: {v}")
+                        continue
+                    
+                    try:
+                        time_key = v['@time']
+                        value = float(v['$'])
+                        
+                        # Basic data validation
+                        if value < 0:
+                            print(f"Warning: Negative value detected for {time_key}: {value}")
+                        
+                        result[time_key] = value
+                    except (ValueError, TypeError) as e:
+                        print(f"Warning: Could not convert value '{v.get('$', 'N/A')}' to float: {e}")
+                        continue
+                
+                if not result:
+                    raise ValueError("No valid data entries found after parsing")
+                
+                print(f"Successfully fetched {len(result)} data points")
+                return result
+                
+            except KeyError as e:
+                raise ValueError(f"Unexpected API response structure. Missing key: {e}")
+                
+        except requests.exceptions.RequestException as e:
+            print(f"API request failed (attempt {attempt + 1}): {e}")
+            if attempt == max_retries - 1:
+                print("Max retries exceeded. API request failed.")
+                raise
+            else:
+                print(f"Retrying in {retry_delay} seconds...")
+                time.sleep(retry_delay)
+                retry_delay *= 2  # Exponential backoff
+    
+    # This should not be reached due to the raise in the except block
+    raise requests.RequestException("API request failed after all retry attempts")
 
 
 def fetch_wage_bonus() -> Dict[str, Dict[str, Dict[str, float]]]:
