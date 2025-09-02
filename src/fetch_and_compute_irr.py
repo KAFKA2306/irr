@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List
 from datetime import datetime
 
 import pandas as pd
@@ -140,7 +140,7 @@ def fetch_wage_bonus() -> Dict[str, Dict[str, Dict[str, float]]]:
             wage = fetch_estat(WAGE_STATS_ID, code)
             bonus = fetch_estat(BONUS_STATS_ID, code)
             out[name] = {'wage': wage, 'bonus': bonus}
-        except (requests.exceptions.JSONDecodeError, KeyError) as e:
+        except (requests.exceptions.JSONDecodeError, KeyError, ValueError, requests.RequestException) as e:
             print(f"API Error for {name}: {e}")
             print("Using sample data for demonstration...")
             # Sample wage data (monthly wages in yen) - realistic progression
@@ -357,8 +357,10 @@ def calculate_monthly_irr_progression(wage_data: Dict[str, float], bonus_data: D
         if year < start_year:
             continue
             
-        wage = wage_data.get(str(year))
-        bonus = bonus_data.get(str(year))
+        # Look for year data with format 'YYYY01' (January of each year)
+        year_key = f'{year}01'
+        wage = wage_data.get(year_key)
+        bonus = bonus_data.get(year_key)
         if wage is None or bonus is None:
             break
             
@@ -388,12 +390,14 @@ def calculate_monthly_irr_progression(wage_data: Dict[str, float], bonus_data: D
 
 def calculate_wage_growth_analysis(wage_data: Dict[str, float], start_year: int) -> Dict:
     """Calculate real wage growth analysis"""
-    years = sorted([int(y) for y in wage_data.keys() if int(y) >= start_year])
-    if len(years) < 2:
+    # Extract years from date keys (e.g., '200401' -> 2004) and filter by start_year
+    available_years = sorted([int(year_key[:4]) for year_key in wage_data.keys() if int(year_key[:4]) >= start_year])
+    if len(available_years) < 2:
         return {}
     
-    start_wage = wage_data[str(years[0])]
-    end_wage = wage_data[str(years[-1])]
+    start_wage = wage_data[f'{available_years[0]}01']
+    end_wage = wage_data[f'{available_years[-1]}01']
+    years = available_years
     
     # Calculate annualized wage growth
     years_elapsed = years[-1] - years[0]
@@ -655,11 +659,13 @@ def main():
     for industry, data in wage_bonus.items():
         print(f"Analyzing industry: {industry}")
         years = sorted(data['wage'].keys())
+        # Extract unique years from date keys (e.g., '200401' -> 2004)
+        unique_years = sorted(set(int(year_key[:4]) for year_key in years))
         industry_results = []
         monthly_progressions = {}
         wage_analyses = {}
         
-        for start_year in map(int, years):
+        for start_year in unique_years:
             # Original IRR calculation
             portfolio = 0.0
             cashflows = []
@@ -667,8 +673,10 @@ def main():
                 year = int(date[:4])
                 if year < start_year:
                     continue
-                wage = data['wage'].get(str(year))
-                bonus = data['bonus'].get(str(year))
+                # Look for year data with format 'YYYY01' (January of each year)
+                year_key = f'{year}01'
+                wage = data['wage'].get(year_key)
+                bonus = data['bonus'].get(year_key)
                 if wage is None or bonus is None:
                     break
                 contribution = wage + bonus / 12.0
