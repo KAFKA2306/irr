@@ -16,7 +16,7 @@ jobs:
       - run: python src/fetch_and_compute_irr.py
         env:
           ESTAT_APP_ID: ${{ secrets.ESTAT_APP_ID }}
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: irr-results
           path: data/processed/irr_results.csv
