@@ -1,67 +1,67 @@
-# Executive Summary: IRR Analysis of Japanese Wage Investment Strategy
+# エグゼクティブサマリー：日本の賃金投資戦略におけるIRR分析
 
-**Analysis Date:** 2025-09-02  
-**Data Period:** 2004-01 to 2015-12  
-**Investment Strategy:** Monthly investment of wage + bonus/12 into ACWI global equity index
+**分析実施日:** 2025年9月2日  
+**データ対象期間:** 2004年1月～2015年12月  
+**投資戦略:** 毎月の賃金＋賞与総額の12分の1をACWIグローバル株式指数に投資
 
-## Key Findings
+## 主な分析結果
 
-### 1. **Data Sources and Methodology**
-- **Wage Data:** Industry-specific Japanese wage and bonus data (simulated based on realistic patterns)
-- **Investment Vehicle:** ACWI (iShares MSCI ACWI ETF) - Global equity index
-- **Analysis Period:** 12 years (2004-2015)
-- **Industries Analyzed:** 5 key sectors including overall average, financial services, mining, information & communications, and manufacturing
+### 1. **データソースと分析手法**
+- **賃金データ:** 業種別の日本の賃金・賞与データ（現実的なパターンに基づいてシミュレーション）
+- **投資対象:** ACWI（iShares MSCI ACWI ETF） - グローバル株式指数
+- **分析期間:** 12年間（2004年～2015年）
+- **分析対象業種:** 総合平均を含む主要5業種（金融、鉱業、情報通信、製造業）
 
-### 2. **Asset Formation Strategy Analysis**
-The analysis examined the effectiveness of investing monthly wage income plus annual bonus (divided by 12) into a globally diversified equity portfolio compared to traditional savings approaches.
+### 2. **資産形成戦略の分析**
+本分析では、毎月の賃金収入と年間賞与総額の12分の1をグローバル分散型株式ポートフォリオに投資する方法が、従来の貯蓄方法と比較してどの程度有効であるかを検証した。
 
-### 3. **Industry-Specific Wage Patterns (Sample Data)**
-Based on the generated sample data representing realistic Japanese wage progression:
+### 3. **業種別賃金パターン（サンプルデータ）**
+現実的な日本の賃金推移を反映した生成サンプルデータに基づき、以下の業種別賃金パターンを分析した：
 
-| Industry | 2004 Base Wage | 2015 Final Wage | Growth Rate |
-|----------|----------------|-----------------|-------------|
-| 金融業 (Financial) | ¥325,000 | ¥377,400 | +1.3% annually |
-| 鉱業 (Mining) | ¥300,000 | ¥343,200 | +1.2% annually |
-| 情報通信業 (IT/Communications) | ¥287,500 | ¥328,050 | +1.15% annually |
-| 製造業 (Manufacturing) | ¥262,500 | ¥297,075 | +1.05% annually |
-| 産業計 (Overall Average) | ¥250,000 | ¥283,800 | +1.0% annually |
+| 業種       | 2004年基準賃金 | 2015年最終賃金 | 成長率       |
+|------------|----------------|----------------|--------------|
+| 金融業     | 325,000円      | 377,400円      | 年平均+1.3%  |
+| 鉱業       | 300,000円      | 343,200円      | 年平均+1.2%  |
+| 情報通信業 | 287,500円      | 328,050円      | 年平均+1.15% |
+| 製造業     | 262,500円      | 297,075円      | 年平均+1.05% |
+| 産業計     | 250,000円      | 283,800円      | 年平均+1.0%  |
 
-### 4. **Market Environment**
-- **Global Equity Returns:** Sample returns based on realistic market patterns (~0.8% monthly average with 4% volatility)
-- **Investment Period:** Covered various market cycles from 2004-2015
-- **Currency:** All calculations in Japanese Yen
+### 4. **市場環境**
+- **グローバル株式リターン:** 現実的な市場パターンに基づくサンプルリターン（月平均約0.8%、ボラティリティ4%）
+- **投資期間:** 2004年～2015年までの各種市場サイクルを網羅
+- **通貨:** 全計算は日本円ベースで実施
 
-## Data Infrastructure
+## データ基盤
 
-### Generated YAML Tables
-1. **`data/processed/irr_comprehensive_analysis.yml`** - Complete analysis framework
-2. **`data/processed/irr_results.yml`** - Simplified IRR results
-3. **`data/raw/wage_bonus.yml`** - Industry wage and bonus progression data
-4. **`data/raw/world_stock.yml`** - Global stock market return data
+### 生成されたYAMLテーブル
+1. **`data/processed/irr_comprehensive_analysis.yml`** - 分析フレームワークの完全版
+2. **`data/processed/irr_results.yml`** - IRR結果の簡易版
+3. **`data/raw/wage_bonus.yml`** - 業種別賃金・賞与推移データ
+4. **`data/raw/world_stock.yml`** - グローバル株式市場リターンデータ
 
-### Analysis Framework
-The analysis provides infrastructure for:
-- **Monthly IRR progression tracking** - How returns evolve month by month
-- **Asset formation disparity analysis** - Comparing performance across employment start years
-- **Wage vs IRR comparison** - Investment returns vs traditional wage growth
-- **Cross-industry analysis** - Performance differences by sector
+### 分析フレームワーク
+本分析では以下のインフラを提供している：
+- **月次IRR推移追跡** - リターンが月ごとにどのように変化するかの分析
+- **資産形成格差分析** - 就職開始年別のパフォーマンス比較
+- **賃金vsIRR比較** - 投資リターンと従来の賃金成長の比較
+- **業種横断分析** - 各業種別のパフォーマンス差異分析
 
-## Implementation Status
+## 実装状況
 
-✅ **YAML Data Format Standardization** - All outputs in YAML format as specified  
-✅ **Fallback Data Infrastructure** - Robust handling of API limitations with realistic sample data  
-✅ **Multi-Industry Analysis Framework** - 5 key Japanese industries analyzed  
-✅ **Comprehensive Reporting Structure** - Detailed analysis categories implemented  
-✅ **Time Series Analysis** - Monthly progression tracking capabilities
+✅ **YAMLデータ形式の標準化** - すべての出力を仕様通りYAML形式で実施
+✅ **代替データ基盤** - API制限時にも対応可能な現実的なサンプルデータによる堅牢な処理
+✅ **多業種分析フレームワーク** - 日本の主要5業種を分析対象として採用
+✅ **包括的な報告体系** - 詳細な分析カテゴリを実装
+✅ **時系列分析機能** - 月次推移追跡が可能な機能を実装
 
-## Next Steps
+## 今後の展開
 
-The analysis framework is complete and ready for:
-1. **Real data integration** when e-Stat API issues are resolved
-2. **Historical backtesting** with actual market data
-3. **Scenario analysis** across different start years and market conditions
-4. **Policy recommendations** based on findings
+本分析フレームワークは完成しており、以下の展開が可能である：
+1. **実データ統合** - e-Stat APIの問題が解決され次第実施予定
+2. **過去データを用いたバックテスト** - 実際の市場データを使用した分析
+3. **異なる開始年・市場条件下でのシナリオ分析**
+4. **調査結果に基づく政策提言**
 
 ---
 
-*This analysis demonstrates the infrastructure for comprehensive asset formation analysis comparing investment strategies with wage growth across Japanese industries.*
+*本分析は、日本の各業種における投資戦略と賃金成長を比較した包括的な資産形成分析の基盤を示すものである。*

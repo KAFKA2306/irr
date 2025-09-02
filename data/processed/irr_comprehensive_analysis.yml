@@ -1,5 +1,5 @@
 metadata:
-  analysis_date: '2025-09-02 09:28:19'
+  analysis_date: '2025-09-02 09:32:25'
   data_period:
     start: 2004-01
     end: 2015-12
@@ -10,7 +10,7 @@ metadata:
   - G 情報通信業
   - E 製造業
 data_quality_assessment:
-  timestamp: '2025-09-02 09:28:19'
+  timestamp: '2025-09-02 09:32:25'
   wage_data_quality:
     産業計:
       wage_data_points: 13
