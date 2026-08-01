@@ -24,17 +24,15 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
+      - name: Validate e-Stat contract structure
+        run: python -m src.estat_contract --allow-quarantined
       - name: Run verified analysis or publish quarantine notice
         env:
           ESTAT_APP_ID: ${{ secrets.ESTAT_APP_ID }}
         run: |
           set -euo pipefail
           mkdir -p reports
-          if python - <<'PY'
-          import pathlib, sys, yaml
-          config = yaml.safe_load(pathlib.Path('config/estat_queries.yaml').read_text(encoding='utf-8'))
-          sys.exit(0 if config.get('verified') is True else 1)
-          PY
+          if python -m src.estat_contract
           then
             python src/fetch_and_compute_irr.py
           else
@@ -44,9 +42,9 @@ jobs:
           <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IRR分析は隔離中</title></head>
           <body style="font-family:system-ui;max-width:760px;margin:4rem auto;padding:1rem;line-height:1.7">
           <h1>IRR分析は隔離中です</h1>
-          <p>過去の処理は、e-Stat取得失敗時に合成賃金・合成株価へ自動的に切り替え、その結果へ統計検定を適用していました。</p>
-          <p>現在は、企業規模・産業・単位・集計次元をe-Statメタ情報と照合し、<code>config/estat_queries.yaml</code>を検証済みにするまで分析を実行しません。</p>
-          <p>月次IRRと年率IRRの区別、固定比較期間、出典ハッシュ、合成データ禁止、重複コホートへの推論統計禁止はコードと回帰テストへ反映済みです。</p>
+          <p>企業規模・産業・男女・年齢・賃金指標・単位・頻度・残存次元を一意に固定したe-Stat証拠契約が未完成です。</p>
+          <p>未検証の統計表IDやカテゴリコードは設定から削除しました。公式e-Stat URL、取得日、メタデータSHA-256、全フィルタと期待次元がそろい、厳格検証を通過するまで分析を実行しません。</p>
+          <p>合成データへの自動フォールバック、月次IRRの年率誤認、重複コホートへの通常の独立標本検定も禁止されています。</p>
           </body></html>
           EOF
           fi
