@@ -1,0 +1,74 @@
+# verified=true にする前に、e-Statのメタ情報で以下を確認してください。
+# - 統計表IDと値の意味
+# - 企業規模1000人以上のカテゴリコード
+# - 産業カテゴリコード
+# - 男女計・年齢計など残存次元
+# - 月額賃金と年間賞与の単位
+# - 年次集計で1年につき1観測になること
+verified: false
+queries:
+  - industry: 産業計
+    wage:
+      stats_data_id: "0003411955"
+      expected_unit: "円"
+      filters:
+        cdCat01: ""
+        company_size_filter_required: "UNVERIFIED"
+    bonus:
+      stats_data_id: "0003411978"
+      expected_unit: "円"
+      filters:
+        cdCat01: ""
+        company_size_filter_required: "UNVERIFIED"
+  - industry: J 金融業，保険業
+    wage:
+      stats_data_id: "0003411955"
+      expected_unit: "円"
+      filters:
+        cdCat01: "J"
+        company_size_filter_required: "UNVERIFIED"
+    bonus:
+      stats_data_id: "0003411978"
+      expected_unit: "円"
+      filters:
+        cdCat01: "J"
+        company_size_filter_required: "UNVERIFIED"
+  - industry: C 鉱業，採石業，砂利採取業
+    wage:
+      stats_data_id: "0003411955"
+      expected_unit: "円"
+      filters:
+        cdCat01: "C"
+        company_size_filter_required: "UNVERIFIED"
+    bonus:
+      stats_data_id: "0003411978"
+      expected_unit: "円"
+      filters:
+        cdCat01: "C"
+        company_size_filter_required: "UNVERIFIED"
+  - industry: G 情報通信業
+    wage:
+      stats_data_id: "0003411955"
+      expected_unit: "円"
+      filters:
+        cdCat01: "G"
+        company_size_filter_required: "UNVERIFIED"
+    bonus:
+      stats_data_id: "0003411978"
+      expected_unit: "円"
+      filters:
+        cdCat01: "G"
+        company_size_filter_required: "UNVERIFIED"
+  - industry: E 製造業
+    wage:
+      stats_data_id: "0003411955"
+      expected_unit: "円"
+      filters:
+        cdCat01: "E"
+        company_size_filter_required: "UNVERIFIED"
+    bonus:
+      stats_data_id: "0003411978"
+      expected_unit: "円"
+      filters:
+        cdCat01: "E"
+        company_size_filter_required: "UNVERIFIED"
