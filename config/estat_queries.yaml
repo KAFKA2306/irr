@@ -1,74 +1,24 @@
-# verified=true にする前に、e-Statのメタ情報で以下を確認してください。
-# - 統計表IDと値の意味
-# - 企業規模1000人以上のカテゴリコード
-# - 産業カテゴリコード
-# - 男女計・年齢計など残存次元
-# - 月額賃金と年間賞与の単位
-# - 年次集計で1年につき1観測になること
+schema_version: 1
 verified: false
-queries:
-  - industry: 産業計
-    wage:
-      stats_data_id: "0003411955"
-      expected_unit: "円"
-      filters:
-        cdCat01: ""
-        company_size_filter_required: "UNVERIFIED"
-    bonus:
-      stats_data_id: "0003411978"
-      expected_unit: "円"
-      filters:
-        cdCat01: ""
-        company_size_filter_required: "UNVERIFIED"
-  - industry: J 金融業，保険業
-    wage:
-      stats_data_id: "0003411955"
-      expected_unit: "円"
-      filters:
-        cdCat01: "J"
-        company_size_filter_required: "UNVERIFIED"
-    bonus:
-      stats_data_id: "0003411978"
-      expected_unit: "円"
-      filters:
-        cdCat01: "J"
-        company_size_filter_required: "UNVERIFIED"
-  - industry: C 鉱業，採石業，砂利採取業
-    wage:
-      stats_data_id: "0003411955"
-      expected_unit: "円"
-      filters:
-        cdCat01: "C"
-        company_size_filter_required: "UNVERIFIED"
-    bonus:
-      stats_data_id: "0003411978"
-      expected_unit: "円"
-      filters:
-        cdCat01: "C"
-        company_size_filter_required: "UNVERIFIED"
-  - industry: G 情報通信業
-    wage:
-      stats_data_id: "0003411955"
-      expected_unit: "円"
-      filters:
-        cdCat01: "G"
-        company_size_filter_required: "UNVERIFIED"
-    bonus:
-      stats_data_id: "0003411978"
-      expected_unit: "円"
-      filters:
-        cdCat01: "G"
-        company_size_filter_required: "UNVERIFIED"
-  - industry: E 製造業
-    wage:
-      stats_data_id: "0003411955"
-      expected_unit: "円"
-      filters:
-        cdCat01: "E"
-        company_size_filter_required: "UNVERIFIED"
-    bonus:
-      stats_data_id: "0003411978"
-      expected_unit: "円"
-      filters:
-        cdCat01: "E"
-        company_size_filter_required: "UNVERIFIED"
+quarantine_reason: >-
+  旧設定に記載されていた統計表ID・産業コードは、企業規模1000人以上、
+  男女計、年齢計、一般労働者、月額賃金、年間賞与、単位、年次頻度を
+  同時に一意化するe-Statメタ情報と照合されていない。推測値をAPIへ
+  送らないため、検証済み契約が作成されるまでqueriesは空にする。
+required_scope:
+  survey: 賃金構造基本統計調査
+  worker_type: 一般労働者
+  company_size: 1000人以上
+  sex: 男女計
+  age: 年齢計
+  industries:
+    - 産業計
+    - J 金融業，保険業
+    - C 鉱業，採石業，砂利採取業
+    - G 情報通信業
+    - E 製造業
+  measures:
+    wage: きまって支給する現金給与額または明示した月額賃金指標
+    bonus: 年間賞与その他特別給与額
+  frequency: annual
+queries: []
