@@ -1,5 +1,7 @@
 # irr — 賃金・賞与を世界株へ積み立てた場合のIRR研究
 
+[![Audit and publish IRR research](https://github.com/KAFKA2306/irr/actions/workflows/irr.yml/badge.svg)](https://github.com/KAFKA2306/irr/actions/workflows/irr.yml)
+
 日本の賃金・賞与統計と世界株ETF価格から、開始年別の積立キャッシュフローIRRを比較する研究コードです。
 
 ## 現在の状態：e-Stat次元を隔離中
